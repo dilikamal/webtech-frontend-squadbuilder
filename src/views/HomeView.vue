@@ -3,13 +3,6 @@
 </script>
 <template>
   
-  <video
-    src="../Brighton.mp4"
-    type="video/mp4"
-    autoplay
-    loop
-    muted
-  ></video>
 
   <div class="welcome-text-container">
     <h1 class="welcome-text">Hello Coach!</h1>

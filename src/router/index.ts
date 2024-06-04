@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import TeamsView from '@/views/TeamsView.vue'
 import TeamsOpenApiView from '@/views/TeamsOpenApiView.vue'
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
