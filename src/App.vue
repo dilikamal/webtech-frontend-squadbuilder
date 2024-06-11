@@ -10,17 +10,9 @@ import 'bootstrap/dist/css/bootstrap.css'
   <div class="container-fluid">
     
     <RouterLink class="navbar-brand ms-4" to="/">Squadbuilder</RouterLink>
-
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link btn btn-secondary" href="/players">Players</a>
         <a class="nav-link btn btn-secondary" href="/teams">Teams</a>
-        <a class="nav-link btn btn-secondary" href="/tactics">Tactics</a>
       </div>
     </div>
   </div>

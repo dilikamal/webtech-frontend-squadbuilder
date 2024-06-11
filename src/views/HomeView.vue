@@ -9,7 +9,6 @@
   </div>
 
   <div class="button-container">
-    <a class="btn btn-primary" href="/players" role="button">Players</a>
     <a class="btn btn-primary" href="/teams" role="button">Teams</a>
 </div>
 </template>
