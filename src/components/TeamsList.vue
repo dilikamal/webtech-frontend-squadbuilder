@@ -16,20 +16,6 @@ const formationField = ref(0); // Formation als Zahl
 const playersField = ref([]); // Spielerliste, initial leer
 let currentPlayerField = ref(''); // Aktuell hinzuzufügender Spieler
 
-function loadTeams () {
- const endpoint = "http://localhost:8080/teams";
- const requestOptions = {
-   method: 'GET',
-   redirect: 'follow'
- }
- fetch(endpoint, requestOptions)
-   .then(response => response.json())
-   .then(result => {
-     teams.value = result;
-   })
-   .catch(error => console.log('error', error));
-}
-
 
 function initTeams(): void {
   teams.value.push({
