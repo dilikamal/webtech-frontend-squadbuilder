@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #007bff;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #A71C85;">
   <div class="container-fluid">
     
     <RouterLink class="navbar-brand ms-4" to="/">Squadbuilder</RouterLink>
@@ -24,40 +24,33 @@ import 'bootstrap/dist/css/bootstrap.css'
 </template>
 
 <style>
+
+body {
+  background-image: url('static/maxresdefault.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+
 
 nav {
   width: 100%;
   font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  padding-bottom: 1rem;
+
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
 
-nav a:first-of-type {
-  border: 0;
-}
 
 @media (min-width: 1024px) {
   header {

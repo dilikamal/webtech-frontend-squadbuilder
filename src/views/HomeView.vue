@@ -14,16 +14,6 @@
 <style>
 
 
-  video {
-    z-index: -1; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   .button-container {
   position: absolute;
   bottom: 15%;
@@ -31,21 +21,37 @@
   transform: translateX(-50%);
   display: flex;
   gap: 20px;
-  max-width: 570px; 
+  max-width: 570px;
   width: 100%;
   justify-content: center;
 }
 
-@keyframes typing {
-    from {
+  @keyframes typing {
+    0% {
       color: transparent;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); 
+      text-shadow:
+        0 0 10px rgba(167, 28, 133, 0.8),
+        0 0 20px rgba(167, 28, 133, 0.6),
+        0 0 30px rgba(167, 28, 133, 0.4),
+        0 0 40px rgba(167, 28, 133, 0.2),
+        0 0 50px rgba(167, 28, 133, 0.1);
+      }
+    50% {
+      color: #A71C85;
+      text-shadow:
+        0 0 20px rgba(167, 28, 133, 0.8),
+        0 0 30px rgba(167, 28, 133, 0.6),
+        0 0 40px rgba(167, 28, 133, 0.4),
+        0 0 50px rgba(167, 28, 133, 0.2),
+        0 0 60px rgba(167, 28, 133, 0.1);
+
     }
-    to {
-      color: #FFD700; 
-      text-shadow: none; 
+    100% {
+      color: #A71C85;
+      text-shadow: none;
     }
   }
+
 
   .welcome-text-container {
     position: absolute;
@@ -53,7 +59,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #FFF; 
+    color: #FFF;
   }
 
   .welcome-text {
@@ -69,8 +75,7 @@
 }
 
 .btn:hover {
-  transform: scale(1.1); 
-  color: #FFD700;
+  transform: scale(1.1);
   text-decoration: none;
 }
 

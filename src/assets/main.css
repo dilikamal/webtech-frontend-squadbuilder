@@ -1,18 +1,27 @@
-h1, h2, h3 {
-  color: #007bff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Add padding to the body */
+body {
+  padding: 20px; /* Adjust this value as needed */
+}
+
+h2, h3 {
+  color: white;
   font-weight: bold;
-  letter-spacing: normal;
-  text-transform: none;
   margin-bottom: 15px;
   margin-top: 10px;
 }
+p {
+  color: white;
+ }
 
-.form-label {
-  font-weight: bold;
-}
 
 button, .back-button, .btn-view, .btn-danger {
-  background-color: #007bff;
+  background-color: #1A407A;
   border: none;
   color: white;
   padding: 5px 10px;
@@ -25,23 +34,23 @@ button, .back-button, .btn-view, .btn-danger {
 }
 
 
-.btn-danger{
-  background-color: #dc3545;
-}
 .btn-danger:hover {
   color: white;
   background-color: #c82333;
 }
 
+/* Hover styles */
 .back-button:hover, .btn-view:hover, button:hover {
-  color: #FFD700;
-  background-color: #0056b3;
+  color: #E6E6FA;
+  background-color: #4B0082;
 }
 
+/* Delete selected button styles */
 .delete-selected {
   padding: 3px 10px;
 }
 
+/* Add view button styles */
 .add-view {
   display: inline-block;
   background-color: #28a745;
@@ -57,22 +66,12 @@ button, .back-button, .btn-view, .btn-danger {
   background-color: #218838;
 }
 
-label{
-color:#007bff;
-font-weight: bold;
+/* Label styles */
+label {
+  color: #1A407A; /* Champions League Blue */
+  font-weight: bold;
 }
 
-.player-name {
-  font-weight: bold; /* Make player names bold */
-}
 
-ul{
-  padding-left: 0;
-}
 
-.player-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px;
-}
+
