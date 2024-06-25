@@ -6,7 +6,7 @@
 
 /* Add padding to the body */
 body {
-  padding: 20px; /* Adjust this value as needed */
+  padding: 0; /* Adjust this value as needed */
 }
 
 h2, h3 {
@@ -30,7 +30,7 @@ button, .back-button, .btn-view, .btn-danger {
   text-decoration: none;
   transition: background-color 0.3s;
   cursor: pointer;
-  margin-bottom: 5px;
+  margin: 0 5px;
 }
 
 
@@ -38,6 +38,7 @@ button, .back-button, .btn-view, .btn-danger {
   color: white;
   background-color: #c82333;
 }
+
 
 /* Hover styles */
 .back-button:hover, .btn-view:hover, button:hover {

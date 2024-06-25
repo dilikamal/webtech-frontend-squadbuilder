@@ -130,7 +130,9 @@ export default defineComponent({
         <div><strong>Taktik:</strong> {{ team.tactic }}</div>
         <div><strong>Formation:</strong> {{ team.formation }}</div>
         <div><strong>Spieler:</strong> {{ team.players.join(', ') }}</div>
-        <button @click="removeTeam(index)" class="btn btn-danger btn-block mt-2">Team entfernen</button>
+        <div class="d-flex justify-content-center">
+          <button @click="removeTeam(index)" class="btn btn-danger btn-block mt-2">Team entfernen</button>
+        </div>
       </li>
     </ul>
   </div>

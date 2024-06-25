@@ -4,10 +4,10 @@
 
 
 
-  <main>
-      <h1>Teams</h1>
-    <p>Welcome to the Teams-Page. Here you are able to access to all the existing Teams and create new Teams!</p>
-      <RouterLink to="/teams-oa" class="btn-primary">Team erstellen</RouterLink>
+  <main class="text-center">
+      <h1 class>Teams</h1>
+    <p class>Welcome to the Teams-Page. Here you are able to access to all the existing Teams and create new Teams!</p>
+      <RouterLink to="/teams-oa" class="btn btn-primary text-center">Teams verwalten</RouterLink>
     </main>
 
 </template>
