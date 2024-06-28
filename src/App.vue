@@ -23,7 +23,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 <style>
 
 body {
-  background-image: url('static/maxresdefault.jpg');
+  background-color: #004D98;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
