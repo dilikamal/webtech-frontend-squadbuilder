@@ -10,11 +10,12 @@ type Team = {
   players: Player[];
 };
 
-const teams: Ref<Team[]> = ref([]); // Initialisierung der Teams-Liste
-const tacticField = ref(''); // Taktik als String
-const formationField = ref(0); // Formation als Zahl
-const playersField = ref([]); // Spielerliste, initial leer
-let currentPlayerField = ref(''); // Aktuell hinzuzufügender Spieler
+export const teams: Ref<Team[]> = ref([]);
+export const tacticField = ref<string>('');
+export const formationField = ref<string>(''); // Du hast erwähnt, dass Formation eine Zeichenfolge ist, also sollte sie ref<string> sein.
+export const playersField = ref<Player[]>([]);
+export const currentPlayerField = ref<string>(''); // Auch hier ist currentPlayerField eine Zeichenfolge, also ref<string>.
+
 
 
 function initTeams(): void {
@@ -25,19 +26,23 @@ function initTeams(): void {
   });
 }
 
-function addTeam(): void {
+export function addTeam(): void {
   if (playersField.value.length <= 11) {
     teams.value.push({
       tactic: tacticField.value,
-    formation: formationField.value.toString(),
+      formation: formationField.value,
       players: [...playersField.value]
     });
+    // Felder leeren nach dem Hinzufügen
+    tacticField.value = '';
+    formationField.value = ('');
+    playersField.value = [];
   } else {
     alert("Teams können nicht mehr als 11 Spieler haben.");
   }
 }
 
-function addPlayer(): void {
+export function addPlayer(): void {
   if (playersField.value.length < 11) {
     const playersField = ref<string[]>([]); // Define playersField as an array of strings
     playersField.value.push(currentPlayerField.value);
@@ -47,15 +52,9 @@ function addPlayer(): void {
   }
 }
 
-function removeTeam(index: number): void {
+export function removeTeam(index: number): void {
   teams.value.splice(index, 1);
 }
-
-function removePlayer(index: number): void {
-  playersField.value.splice(index, 1);
-}
-
-
 
 onMounted(() => {
   initTeams();
