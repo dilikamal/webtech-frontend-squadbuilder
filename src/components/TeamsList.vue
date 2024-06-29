@@ -56,6 +56,10 @@ export function removeTeam(index: number): void {
   teams.value.splice(index, 1);
 }
 
+function removePlayer(index: number): void {
+  playersField.value.splice(index, 1);
+}
+
 onMounted(() => {
   initTeams();
 })
