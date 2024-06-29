@@ -106,6 +106,7 @@ export default defineComponent({
     this.initTeams();
   }
 })
+
 </script>
 
 <template>
