@@ -2,6 +2,7 @@
 import { defineComponent } from 'vue'
 import axios from 'axios'
 
+
 type Player = string; // Name des Spielers als String
 type Team = {
   tactic: string;
