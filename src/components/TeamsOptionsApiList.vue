@@ -1,9 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
-
-type Player = string; // Name des Spielers als String
+type Player = string;
 type Team = {
   tactic: string;
   formation: string;
@@ -39,7 +38,7 @@ export default defineComponent({
         const response = await axios.get<Team[]>(`${baseUrl}/teams`);
         this.teams = response.data;
       } catch (error) {
-        console.error('Error fetching teams:', error);
+        this.handleApiError(error);
       }
     },
     async addTeam(): Promise<void> {
@@ -50,14 +49,14 @@ export default defineComponent({
           players: [...this.playersField]
         };
         try {
-          const response = await axios.post(`${baseUrl}/teams`, newTeam);
+          const response = await axios.post<Team>(`${baseUrl}/teams`, newTeam);
           this.teams.push(response.data);
           // Reset fields after adding
           this.tacticField = '';
           this.formationField = '0';
           this.playersField = [];
         } catch (error) {
-          console.error('Error adding team:', error);
+          this.handleApiError(error);
         }
       } else {
         alert("Ein Team kann maximal 11 Spieler haben.");
@@ -77,11 +76,30 @@ export default defineComponent({
         await axios.delete(`${baseUrl}/teams/${teamId}`);
         this.teams.splice(teamIndex, 1);
       } catch (error) {
-        console.error('Error removing team:', error);
+        this.handleApiError(error);
       }
     },
     removePlayer(playerIndex: number): void {
       this.playersField.splice(playerIndex, 1);
+    },
+    handleApiError(error: AxiosError): void {
+      if (error.response) {
+        // Server responded with a non-2xx status code
+        console.error('Request failed with status:', error.response.status);
+        console.error('Error message:', error.response.data);
+        // Optionally, show a notification to the user or handle specific errors
+        alert(`Error fetching data: ${error.response.data.message}`);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response received:', error.request);
+        // Optionally, inform the user that there was no response
+        alert('No response from server. Please try again later.');
+      } else {
+        // Something happened in setting up the request that triggered an error
+        console.error('Request failed:', error.message);
+        // Optionally, show a generic error message or handle accordingly
+        alert('An error occurred. Please try again later.');
+      }
     }
   },
   mounted() {
