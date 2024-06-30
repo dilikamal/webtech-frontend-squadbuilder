@@ -6,8 +6,7 @@
 
   <main class="text-center">
       <h1 class>Teams</h1>
-    <p class>Welcome to the Teams-Page. Here you are able to access to all the existing Teams and create new Teams!</p>
-      <RouterLink to="/teams-oa" class="btn btn-primary text-center">Teams verwalten</RouterLink>
+    <p class>Willkommen auf der Teams-Seite. Hier können Sie auf alle bestehenden Teams zugreifen und neue Teams erstellen!</p>      <RouterLink to="/teams-oa" class="btn btn-primary text-center">Teams verwalten</RouterLink>
     </main>
 
 

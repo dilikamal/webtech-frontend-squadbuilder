@@ -2,12 +2,12 @@
 import { defineComponent, onMounted, ref, type Ref } from 'vue'
 import axios from 'axios'
 
-type Player = string; // Name des Spielers als String
+type Player = string;
 type Team = {
   tactic: string;
   formation: string;
   players: Player[];
-  id: number; // assuming each team has an ID for deletion purposes
+  id: number;
 }
 type TeamsListOaData = {
   teams: Team[];
@@ -91,7 +91,7 @@ export default defineComponent({
 
 <template>
   <div class="container squad-builder">
-    <h1 class="text-center">Create a Team</h1>
+    <h1 class="text-center">Team erstellen</h1>
     <form @submit.prevent="addTeam" class="team-form">
       <div class="form-row mb-3">
         <div class="col">
