@@ -91,7 +91,7 @@ export default defineComponent({
 
 <template>
   <div class="container squad-builder">
-    <h1 class="text-center">create a Team</h1>
+    <h1 class="text-center">Create a Team</h1>
     <form @submit.prevent="addTeam" class="team-form">
       <div class="form-row mb-3">
         <div class="col">
@@ -142,13 +142,13 @@ export default defineComponent({
     </form>
 
     <h2>Teams</h2>
-    <ul>
-      <li v-for="(team, index) in teams" :key="index">
-        <div>Taktik: {{ team.tactic }}, Formation: {{ team.formation }}</div>
+    <div class="teams-grid">
+      <div v-for="(team, index) in teams" :key="index" class="team-card">
+        <div><strong>Taktik:</strong> {{ team.tactic }}, Formation: {{ team.formation }}</div>
         <div>Spieler: {{ team.players.join(', ') }}</div>
-        <button @click="removeTeam(index)">Team entfernen</button>
-      </li>
-    </ul>
+        <button @click="removeTeam(index)" class="btn btn-danger btn-sm mt-2">Team entfernen</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -188,6 +188,18 @@ export default defineComponent({
   border-radius: 15px;
 }
 
+.btn-success {
+  background-color: green;
+  border: none;
+  color: white;
+}
+
+.btn-primary {
+  background-color: blue;
+  border: none;
+  color: white;
+}
+
 h1 {
   color: #A71C85;
   font-size: 2rem;
@@ -199,6 +211,20 @@ h1 {
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  background-color: white;
+}
+
+.team-card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
 li {
