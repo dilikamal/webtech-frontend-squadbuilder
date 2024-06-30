@@ -4,7 +4,7 @@
 
 
 
-  <main class="text-center">
+  <main class="text-center container">
       <h1 class>Teams</h1>
     <p class>Willkommen auf der Teams-Seite. Hier können Sie auf alle bestehenden Teams zugreifen und neue Teams erstellen!</p>      <RouterLink to="/teams-oa" class="btn btn-primary text-center">Teams verwalten</RouterLink>
     </main>
@@ -20,4 +20,10 @@ h1 {
   margin-top: 1rem;
   font-weight: bold;
 }
+
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 </style>
