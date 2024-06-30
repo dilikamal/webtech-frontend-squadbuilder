@@ -29,7 +29,7 @@ describe('TeamsOptionsApiList', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.text()).toContain('Create a Team')
+    expect(wrapper.text()).toContain('Team erstellen')
     expect(wrapper.text()).toContain('Tiki-Taka')
     expect(wrapper.text()).toContain('Catenaccio')
   })
