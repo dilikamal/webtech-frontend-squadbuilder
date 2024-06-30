@@ -10,6 +10,7 @@
       <RouterLink to="/teams-oa" class="btn btn-primary text-center">Teams verwalten</RouterLink>
     </main>
 
+
 </template>
 
 <style>

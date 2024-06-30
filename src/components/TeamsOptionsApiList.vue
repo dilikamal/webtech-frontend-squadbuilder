@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref, type Ref } from 'vue'
 import axios from 'axios'
 
 type Player = string; // Name des Spielers als String
@@ -7,6 +7,7 @@ type Team = {
   tactic: string;
   formation: string;
   players: Player[];
+  id: number; // assuming each team has an ID for deletion purposes
 }
 type TeamsListOaData = {
   teams: Team[];
@@ -34,7 +35,7 @@ export default defineComponent({
   methods: {
     async initTeams(): Promise<void> {
       try {
-        const response = await axios.get<Team[]>(`${baseUrl}/teams`);
+        const response = await axios.get<Team[]>(`${baseUrl}/teams-oa`);
         this.teams = response.data;
       } catch (error) {
         console.error('Error fetching teams:', error);
@@ -48,7 +49,7 @@ export default defineComponent({
           players: [...this.playersField]
         };
         try {
-          const response = await axios.post(`${baseUrl}/teams`, newTeam);
+          const response = await axios.post(`${baseUrl}/teams-oa`, newTeam);
           this.teams.push(response.data);
           // Reset fields after adding
           this.tacticField = '';
@@ -59,6 +60,15 @@ export default defineComponent({
         }
       } else {
         alert("Ein Team kann maximal 11 Spieler haben.");
+      }
+    },
+    async removeTeam(index: number): Promise<void> {
+      const teamId = this.teams[index].id;
+      try {
+        await axios.delete(`${baseUrl}/teams-oa/${teamId}`);
+        this.teams.splice(index, 1);
+      } catch (error) {
+        console.error('Error removing team:', error);
       }
     },
     addPlayer(): void {
@@ -130,6 +140,15 @@ export default defineComponent({
       </div>
       <button type="submit" class="btn btn-success btn-block mb-3">Team hinzufügen</button>
     </form>
+
+    <h2>Teams</h2>
+    <ul>
+      <li v-for="(team, index) in teams" :key="index">
+        <div>Taktik: {{ team.tactic }}, Formation: {{ team.formation }}</div>
+        <div>Spieler: {{ team.players.join(', ') }}</div>
+        <button @click="removeTeam(index)">Team entfernen</button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -175,5 +194,25 @@ h1 {
   margin-bottom: 1rem;
   margin-top: 1rem;
   font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
 }
 </style>
