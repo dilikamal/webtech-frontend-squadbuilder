@@ -141,7 +141,7 @@ export default defineComponent({
       <button type="submit" class="btn btn-success btn-block mb-3">Team hinzufügen</button>
     </form>
 
-    <h2>Teams</h2>
+    <h2 class="output-title">Teams</h2>
     <div class="teams-grid">
       <div v-for="(team, index) in teams" :key="index" class="team-card">
         <div><strong>Taktik:</strong> {{ team.tactic }}, Formation: {{ team.formation }}</div>
@@ -195,14 +195,14 @@ export default defineComponent({
 }
 
 .btn-primary {
-  background-color: blue;
   border: none;
   color: white;
+  margin: 0;
 }
 
 h1 {
   color: #A71C85;
-  font-size: 2rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
   font-weight: bold;
@@ -217,7 +217,6 @@ ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 10px;
-  background-color: white;
 }
 
 .team-card {
@@ -225,6 +224,7 @@ ul {
   border: 1px solid #ccc;
   background-color: #fff;
   border-radius: 5px;
+  margin-bottom: 2rem;
 }
 
 li {
@@ -237,8 +237,30 @@ button {
   margin-top: 10px;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: #ff4d4d;
   color: white;
   border: none;
 }
+
+.output-title {
+  color: #A71C85;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-weight: bold;
+
+}
+
+
+.btn-danger {
+  background-color: #ff4d4d;
+  margin-left: 0;
+}
+
+.btn-success {
+  margin: 0;
+}
+
+
+
+
 </style>
