@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from 'vue'
+import axios from 'axios'
 
 defineProps<{ title: string }>()
 
@@ -8,76 +9,39 @@ type Team = {
   tactic: string;
   formation: string;
   players: Player[];
+  id: number; // assuming each team has an ID for deletion purposes
 };
 
-export const teams: Ref<Team[]> = ref([]);
-export const tacticField = ref<string>('');
-export const formationField = ref<string>(''); // Du hast erwähnt, dass Formation eine Zeichenfolge ist, also sollte sie ref<string> sein.
-export const playersField = ref<Player[]>([]);
-export const currentPlayerField = ref<string>(''); // Auch hier ist currentPlayerField eine Zeichenfolge, also ref<string>.
+const baseUrl = import.meta.env.VITE_APP_BACKEND_BASE_URL;
 
+const teams: Ref<Team[]> = ref([]);
 
-
-function initTeams(): void {
-  teams.value.push({
-    tactic: 'Offensive',
-    formation: '433',
-    players: ['Player 1', 'Player 2']
-  });
-}
-
-export function addTeam(): void {
-  if (playersField.value.length <= 11) {
-    teams.value.push({
-      tactic: tacticField.value,
-      formation: formationField.value,
-      players: [...playersField.value]
-    });
-    // Felder leeren nach dem Hinzufügen
-    tacticField.value = '';
-    formationField.value = ('');
-    playersField.value = [];
-  } else {
-    alert("Teams können nicht mehr als 11 Spieler haben.");
+async function initTeams(): Promise<void> {
+  try {
+    const response = await axios.get<Team[]>(`${baseUrl}/teams`);
+    teams.value = response.data;
+  } catch (error) {
+    console.error('Error fetching teams:', error);
   }
 }
 
-export function addPlayer(): void {
-  if (playersField.value.length < 11) {
-    const playersField = ref<string[]>([]); // Define playersField as an array of strings
-    playersField.value.push(currentPlayerField.value);
-    currentPlayerField.value = '';
-  } else {
-    alert("Nicht mehr als 11 Spieler erlaubt.");
+async function removeTeam(index: number): Promise<void> {
+  const teamId = teams.value[index].id;
+  try {
+    await axios.delete(`${baseUrl}/teams/${teamId}`);
+    teams.value.splice(index, 1);
+  } catch (error) {
+    console.error('Error removing team:', error);
   }
-}
-
-export function removeTeam(index: number): void {
-  teams.value.splice(index, 1);
-}
-
-function removePlayer(index: number): void {
-  playersField.value.splice(index, 1);
 }
 
 onMounted(() => {
   initTeams();
-})
+});
 </script>
 
 <template>
   <h2>{{ title }}</h2>
-  <form @submit.prevent="addTeam">
-    <input type="text" placeholder="Taktik" v-model="tacticField" />
-    <input type="number" placeholder="Formation" v-model="formationField" />
-    <div v-for="(player, index) in playersField" :key="index">
-      {{ player }} <button @click.prevent="removePlayer(index)">Remove</button>
-    </div>
-    <input type="text" placeholder="Spieler hinzufügen" v-model="currentPlayerField" />
-    <button @click.prevent="addPlayer">Spieler hinzufügen</button>
-    <button>Team hinzufügen</button>
-  </form>
-  <hr />
   <ul>
     <li v-for="(team, index) in teams" :key="index">
       <div>Taktik: {{ team.tactic }}, Formation: {{ team.formation }}</div>
@@ -88,5 +52,23 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Dein bestehender CSS-Code kann hier übernommen werden. */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+}
 </style>

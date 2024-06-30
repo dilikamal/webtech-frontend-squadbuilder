@@ -2,7 +2,6 @@
 import { defineComponent } from 'vue'
 import axios from 'axios'
 
-
 type Player = string; // Name des Spielers als String
 type Team = {
   tactic: string;
@@ -22,7 +21,6 @@ const baseUrl = import.meta.env.VITE_APP_BACKEND_BASE_URL;
 
 export default defineComponent({
   name: 'TeamsOptionsApiList',
-  props: ['title'],
   data(): TeamsListOaData {
     return {
       teams: [],
@@ -69,15 +67,6 @@ export default defineComponent({
         this.currentPlayerField = '';
       } else {
         alert("Nicht mehr als 11 Spieler erlaubt.");
-      }
-    },
-    async removeTeam(teamIndex: number): Promise<void> {
-      const teamId = this.teams[teamIndex];
-      try {
-        await axios.delete(`${baseUrl}/teams/${teamId}`);
-        this.teams.splice(teamIndex, 1);
-      } catch (error) {
-        console.error('Error removing team:', error);
       }
     },
     removePlayer(playerIndex: number): void {
@@ -141,17 +130,6 @@ export default defineComponent({
       </div>
       <button type="submit" class="btn btn-success btn-block mb-3">Team hinzufügen</button>
     </form>
-    <hr />
-    <ul class="list-group">
-      <li v-for="(team, index) in teams" :key="index" class="list-group-item">
-        <div><strong>Taktik:</strong> {{ team.tactic }}</div>
-        <div><strong>Formation:</strong> {{ team.formation }}</div>
-        <div><strong>Spieler:</strong> {{ team.players.join(', ') }}</div>
-        <div class="d-flex justify-content-center">
-          <button @click="removeTeam(index)" class="btn btn-danger btn-block mt-2">Team entfernen</button>
-        </div>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -185,21 +163,10 @@ export default defineComponent({
   width: 100%;
 }
 
-.list-group-item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .btn {
   padding: 10px 10px;
   font-size: 1rem;
   border-radius: 15px;
-  margin: 0 15px;
-}
-
-hr {
-  margin: 20px 0;
 }
 
 h1 {
